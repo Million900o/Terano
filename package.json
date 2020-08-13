@@ -1,0 +1,39 @@
+{
+  "name": "terano",
+  "version": "1.0.3",
+  "description": "A bot...",
+  "main": "index.js",
+  "scripts": {
+    "start": "pm2 start .",
+    "test": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Million900o/terano.git"
+  },
+  "author": "Million900o",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Million900o/terano/issues"
+  },
+  "homepage": "https://github.com/Million900o/terano#readme",
+  "dependencies": {
+    "@discordjs/opus": "^0.3.2",
+    "bufferutil": "^4.0.1",
+    "canvas": "^2.6.1",
+    "colors": "^1.4.0",
+    "dblapi.js": "^2.4.0",
+    "discord.js": "github:discordjs/discord.js#master",
+    "discord.js-light": "^3.0.4",
+    "erlpack": "github:discord/erlpack",
+    "eslint": "^7.5.0",
+    "hastebin-gen": "^2.0.5",
+    "klasa": "^0.5.0",
+    "mongodb": "^3.5.9",
+    "node-fetch": "^2.6.0",
+    "utf-8-validate": "^5.0.2",
+    "ytdl-core": "^3.1.2",
+    "ytsr": "^0.1.15",
+    "zlib-sync": "^0.1.7"
+  }
+}
