@@ -43,8 +43,32 @@ module.exports = class extends Command {
         }
 
         let cmdCats = []
+        let music = []
+        let level = []
+        let admin = []
+        let owner = []
+        let other = []
+        let roki = []
         this.client.commands.forEach(e => {
             let cat = e.fullCategory[e.fullCategory.length - 1]
+            if (cat == 'music') {
+                return music.push(e.name)
+            }
+            if (cat == 'Level') {
+                return level.push(e.name)
+            }
+            if (cat == 'admin') {
+                return admin.push(e.name)
+            }
+            if (cat == 'other') {
+                return other.push(e.name)
+            }
+            if (cat == 'Roki') {
+                return roki.push(e.name)
+            }
+            if (cat == 'owner') {
+                return owner.push(e.name)
+            }
             if (!cmdCats.includes(cat)) cmdCats.push(cat)
             else return
         })
@@ -54,11 +78,11 @@ module.exports = class extends Command {
             .setAuthor(message.author.tag, message.author.avatarURL())
             .setTitle('Help')
             .setColor('#7d65bf')
-            .addField(message.language.get('COMMAND_HELP_CAT_MUSIC'), '```play```')
-            .addField(message.language.get('COMMAND_HELP_CAT_MOD'), '```prefix```')
-            .addField(message.language.get('COMMAND_HELP_CAT_LEVEL'), '```card, levelMessage, leaderboard, rank```')
-            .addField(message.language.get('COMMAND_HELP_CAT_ROKI'), '```birb, car, cat, dog, fox, koala, panda, redpanda, shibe, space```')
-            .addField(message.language.get('COMMAND_HELP_CAT_OTHER'), '```ping, stats, help, vote, invite```')
+            .addField(message.language.get('COMMAND_HELP_CAT_MUSIC'), '```' + music.join(', ') + '```')
+            .addField(message.language.get('COMMAND_HELP_CAT_MOD'), '```' + admin.join(', ') + '```')
+            .addField(message.language.get('COMMAND_HELP_CAT_LEVEL'), '```' + level.join(', ') + '```')
+            .addField(message.language.get('COMMAND_HELP_CAT_ROKI'), '```' + roki.join(', ') + '```')
+            .addField(message.language.get('COMMAND_HELP_CAT_OTHER'), '```' + other.join(', ') + '```')
         return message.sendMessage(helpEmbed)
     }
 
