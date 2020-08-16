@@ -43,11 +43,11 @@ module.exports = class extends Command {
         }
 
         let cmdCats = []
-        for (let i = 0; i < this.client.commands.size; i++) {
-            if (!cmdCats.includes(this.client.commands[i].fullCategory[this.client.commands[i].fullCategory.length - 1])) {
-                cmdCats.push(this.client.commands[i].fullCategory[this.client.commands[i].fullCategory.length - 1])
-            }
-        }
+        this.client.commands.forEach(e => {
+            let cat = e.fullCategory[e.fullCategory.length - 1]
+            if (!cmdCats.includes(cat)) cmdCats.push(cat)
+            else return
+        })
         console.log(cmdCats)
 
         let helpEmbed = new MessageEmbed()
