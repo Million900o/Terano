@@ -104,6 +104,11 @@ module.exports = class extends Language {
             COMMAND_HELP_NAME: 'Help',
             COMMAND_HELP_DESCRIPTION: 'Get a list of commands or more information on a command.',
             COMMAND_HELP_CMD_NOTFOUND: (cmd) => `${cmd} is not a registered command.`,
+            COMMAND_HELP_CAT_MUSIC: 'Music Commands',
+            COMMAND_HELP_CAT_MOD: 'Moderator Commands',
+            COMMAND_HELP_CAT_LEVEL: 'Level Commands',
+            COMMAND_HELP_CAT_ROKI: 'SmartAPI COmmands',
+            COMMAND_HELP_CAT_OTHER: 'Other Commands',
 
             COMMAND_REBOOT_NAME: 'Reboot',
             COMMAND_REBOOT_DESCRIPTION: 'Reboot the bot',

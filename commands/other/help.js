@@ -41,15 +41,24 @@ module.exports = class extends Command {
                 return message.sendMessage(commandHelpEmbed)
             }
         }
+
+        let cmdCats = []
+        for (e in this.client.commands) {
+            if (!cmdCats.includes(e.fullCategory[e.fullCategory.length - 1])) {
+                cmdCats.push(e.fullCategory[e.fullCategory.length - 1])
+            }
+        }
+        console.log(cmdCats)
+
         let helpEmbed = new MessageEmbed()
             .setAuthor(message.author.tag, message.author.avatarURL())
             .setTitle('Help')
             .setColor('#7d65bf')
-            .addField('Music Commands', '```play```')
-            .addField('Moderator Commands', '```prefix```')
-            .addField('Level Commands', '```card, levelMessage, leaderboard, rank```')
-            .addField('SmartAPI Commands', '```birb, car, cat, dog, fox, koala, panda, redpanda, shibe, space```')
-            .addField('Other Commands', '```ping, stats, help, vote, invite```')
+            .addField(message.language.get('COMMAND_HELP_CAT_MUSIC'), '```play```')
+            .addField(message.language.get('COMMAND_HELP_CAT_MOD'), '```prefix```')
+            .addField(message.language.get('COMMAND_HELP_CAT_LEVEL'), '```card, levelMessage, leaderboard, rank```')
+            .addField(message.language.get('COMMAND_HELP_CAT_ROKI'), '```birb, car, cat, dog, fox, koala, panda, redpanda, shibe, space```')
+            .addField(message.language.get('COMMAND_HELP_CAT_OTHER'), '```ping, stats, help, vote, invite```')
         return message.sendMessage(helpEmbed)
     }
 
