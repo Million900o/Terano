@@ -43,9 +43,9 @@ module.exports = class extends Command {
         }
 
         let cmdCats = []
-        for (e in this.client.commands) {
-            if (!cmdCats.includes(e.fullCategory[e.fullCategory.length - 1])) {
-                cmdCats.push(e.fullCategory[e.fullCategory.length - 1])
+        for (let i = 0; i < this.client.commands.size; i++) {
+            if (!cmdCats.includes(this.client.commands[i].fullCategory[this.client.commands[i].fullCategory.length - 1])) {
+                cmdCats.push(this.client.commands[i].fullCategory[this.client.commands[i].fullCategory.length - 1])
             }
         }
         console.log(cmdCats)
