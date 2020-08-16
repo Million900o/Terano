@@ -57,8 +57,10 @@ const handleVote = async (client, vote) => {
 
     if (member.settings.noDM) return
 
-    if (vote.isWeekend) member.send(`Since today counts as a weekend, your vote counts as two:heart_exclamation:`);
-    member.send(toMember);
+    if (vote.isWeekend) {
+        // member.send(`Since today counts as a weekend, your vote counts as two:heart_exclamation:`).catch(e => { });
+    }
+    // member.send(toMember).catch(e => { });
 };
 
 module.exports = { Start, handleVote };
