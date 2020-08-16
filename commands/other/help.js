@@ -42,35 +42,23 @@ module.exports = class extends Command {
             }
         }
 
-        let cmdCats = []
-        let music = []
-        let level = []
-        let admin = []
+        // let cmdCats = []
         let owner = []
-        let other = []
+        let music = []
+        let admin = []
+        let level = []
         let roki = []
+        let other = []
         this.client.commands.forEach(e => {
             let cat = e.fullCategory[e.fullCategory.length - 1]
-            if (cat == 'music') {
-                return music.push(e.name)
-            }
-            if (cat == 'Level') {
-                return level.push(e.name)
-            }
-            if (cat == 'admin') {
-                return admin.push(e.name)
-            }
-            if (cat == 'other') {
-                return other.push(e.name)
-            }
-            if (cat == 'Roki') {
-                return roki.push(e.name)
-            }
-            if (cat == 'owner') {
-                return owner.push(e.name)
-            }
-            if (!cmdCats.includes(cat)) cmdCats.push(cat)
-            else return
+            if (cat == 'owner') return owner.push(e.name)
+            if (cat == 'music') return music.push(e.name)
+            if (cat == 'admin') return admin.push(e.name)
+            if (cat == 'Level') return level.push(e.name)
+            if (cat == 'Roki') return roki.push(e.name)
+            if (cat == 'other') return other.push(e.name)
+            // if (!cmdCats.includes(cat)) cmdCats.push(cat)
+            // else return
         })
         console.log(cmdCats)
 

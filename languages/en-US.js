@@ -107,7 +107,7 @@ module.exports = class extends Language {
             COMMAND_HELP_CAT_MUSIC: 'Music Commands',
             COMMAND_HELP_CAT_MOD: 'Moderator Commands',
             COMMAND_HELP_CAT_LEVEL: 'Level Commands',
-            COMMAND_HELP_CAT_ROKI: 'SmartAPI COmmands',
+            COMMAND_HELP_CAT_ROKI: 'SmartAPI Commands',
             COMMAND_HELP_CAT_OTHER: 'Other Commands',
 
             COMMAND_REBOOT_NAME: 'Reboot',
