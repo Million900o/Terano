@@ -42,7 +42,6 @@ module.exports = class extends Command {
             }
         }
 
-        // let cmdCats = []
         let owner = []
         let music = []
         let admin = []
@@ -57,10 +56,7 @@ module.exports = class extends Command {
             if (cat == 'Level') return level.push(e.name)
             if (cat == 'Roki') return roki.push(e.name)
             if (cat == 'other') return other.push(e.name)
-            // if (!cmdCats.includes(cat)) cmdCats.push(cat)
-            // else return
         })
-        console.log(cmdCats)
 
         let helpEmbed = new MessageEmbed()
             .setAuthor(message.author.tag, message.author.avatarURL())
