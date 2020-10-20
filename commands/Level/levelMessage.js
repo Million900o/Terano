@@ -19,16 +19,16 @@ module.exports = class extends Command {
     }
 
     async run(message) {
-        let TF = (await message.guild.settings).levelMessage
+        let TF = (await message.guild.settings).levelMessage;
 
         if (TF) {
-            await message.guild.settings.update("levelMessage", false)
-            let lmEmbed = new MessageEmbed().setTitle(message.language.get('COMMAND_LM_FALSE'))
-            return message.channel.sendMessage(lmEmbed)
+            await message.guild.settings.update("levelMessage", false);
+            let lmEmbed = new MessageEmbed().setTitle(message.language.get('COMMAND_LM_FALSE'));
+            return message.channel.sendMessage(lmEmbed);
         } else {
-            await message.guild.settings.update("levelMessage", true)
-            let lmEmbed = new MessageEmbed().setTitle(message.language.get('COMMAND_LM_TRUE'))
-            return message.channel.sendMessage(lmEmbed)
+            await message.guild.settings.update("levelMessage", true);
+            let lmEmbed = new MessageEmbed().setTitle(message.language.get('COMMAND_LM_TRUE'));
+            return message.channel.sendMessage(lmEmbed);
         }
     }
 

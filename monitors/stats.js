@@ -10,11 +10,11 @@ module.exports = class extends Monitor {
     }
 
     async run(message) {
-        this.client.settings.update('stats.messages', this.client.settings.stats.messages + 1)
+        this.client.settings.update('stats.messages', this.client.settings.stats.messages + 1);
     }
 
     init() {
-        if (!this.client.options.saveStats) this.disable()
+        if (!this.client.options.saveStats) this.disable();
     }
 
 };

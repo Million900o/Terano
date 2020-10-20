@@ -139,14 +139,24 @@ module.exports = class extends Language {
             COMMAND_APOD_NAME: 'Astronomy Picture of the Day',
             COMMAND_APOD_DESCRIPTION: 'Get the astronomy picture of the day from nasa',
 
+            MUSIC_NOT_INVC: 'You are not currently in a voice channel.',
+            MUSIC_NOT_IN_SAMEVC: 'We are not currently in the same voice channel.',
 
+            COMMAND_PLAY_NAME: 'Play',
+            COMMAND_PLAY_DESCIPTION: 'Play a song lol.',
+            COMMAND_PLAY_NOSONG: 'No song found.',
+            COMMAND_PLAY_PLAYING: (song) => `Now playing: \`${song}\``,
 
+            COMMAND_VOLUME_NAME: 'Volume',
+            COMMAND_COLUME_DESCRIPTION: 'Change the volume.',
+            COMMAND_VOLUME_CHANGED: (int) => `Changed the volume to \`${int}\`%`,
 
+            COMMAND_PAUSE_NAME: 'Pause',
+            COMMAND_PAUSE_PAUSED: 'Music paused.',
 
-
-
-
-
+            COMMAND_RESUME_NAME: 'Resume',
+            COMMAND_RESUME_PLAYING: 'Music is not currently paused.',
+            COMMAND_RESUME_RESUMED: 'Music resumed.',
 
 
 
@@ -192,9 +202,9 @@ module.exports = class extends Language {
 
             PREFIX_REMINDER: (prefix = `@${this.client.user.tag}`) => {
                 if (Array.isArray(prefix)) return new MessageEmbed()
-                    .setTitle(`This guild's prefixes are: \`${prefix.join('\`, \`')}\``)
+                    .setTitle(`This guild's prefixes are: \`${prefix.join('\`, \`')}\``);
                 else return new MessageEmbed()
-                    .setTitle(`This guild's prefix is: \`${prefix}\``)
+                    .setTitle(`This guild's prefix is: \`${prefix}\``);
             },
             SETTING_GATEWAY_EXPECTS_GUILD: 'The parameter <Guild> expects either a Guild or a Guild Object.',
             SETTING_GATEWAY_VALUE_FOR_KEY_NOEXT: (data, key) => `The value ${data} for the key ${key} does not exist.`,
@@ -249,14 +259,14 @@ module.exports = class extends Language {
             INHIBITOR_REQUIRED_SETTINGS: (settings) => `The guild is missing the **${settings.join(', ')}** guild setting${settings.length !== 1 ? 's' : ''} and thus the command cannot run.`,
             // INHIBITOR_RUNIN: (types) => `This command is only available in ${types} channels.`,
             // INHIBITOR_RUNIN_NONE: (name) => `The ${name} command is not configured to run in any channel.`,
-            COMMAND_BLACKLIST_DESCRIPTION: 'Blacklists or un-blacklists users and guilds from the bot.',
+            // COMMAND_BLACKLIST_DESCRIPTION: 'Blacklists or un-blacklists users and guilds from the bot.',
             COMMAND_BLACKLIST_SUCCESS: (usersAdded, usersRemoved, guildsAdded, guildsRemoved) => [
                 usersAdded.length ? `**Users Added**\n${util.codeBlock('', usersAdded.join(', '))}` : '',
                 usersRemoved.length ? `**Users Removed**\n${util.codeBlock('', usersRemoved.join(', '))}` : '',
                 guildsAdded.length ? `**Guilds Added**\n${util.codeBlock('', guildsAdded.join(', '))}` : '',
                 guildsRemoved.length ? `**Guilds Removed**\n${util.codeBlock('', guildsRemoved.join(', '))}` : ''
             ].filter(val => val !== '').join('\n'),
-            COMMAND_EVAL_DESCRIPTION: 'Evaluates arbitrary Javascript. Reserved for bot owner.',
+            // COMMAND_EVAL_DESCRIPTION: 'Evaluates arbitrary Javascript. Reserved for bot owner.',
             COMMAND_EVAL_EXTENDEDHELP: [
                 'The eval command evaluates code as-in, any error thrown from it will be handled.',
                 'It also uses the flags feature. Write --silent, --depth=number or --async to customize the output.',
@@ -278,13 +288,13 @@ module.exports = class extends Language {
             COMMAND_TRANSFER_FAILED: (type, name) => `Transfer of ${type}: ${name} to Client has failed. Please check your Console.`,
             COMMAND_TRANSFER_DESCRIPTION: 'Transfers a core piece to its respective folder.',
             COMMAND_REBOOT: 'Rebooting...',
-            COMMAND_REBOOT_DESCRIPTION: 'Reboots the bot.',
+            // COMMAND_REBOOT_DESCRIPTION: 'Reboots the bot.',
             COMMAND_LOAD: (time, type, name) => `✅ Successfully loaded ${type}: ${name}. (Took: ${time})`,
             COMMAND_LOAD_FAIL: 'The file does not exist, or an error occurred while loading your file. Please check your console.',
             COMMAND_LOAD_ERROR: (type, name, error) => `❌ Failed to load ${type}: ${name}. Reason:${util.codeBlock('js', error)}`,
             COMMAND_LOAD_DESCRIPTION: 'Load a piece from your bot.',
-            COMMAND_PING: 'Ping?',
-            COMMAND_PING_DESCRIPTION: 'Runs a connection test to Discord.',
+            // COMMAND_PING: 'Ping?',
+            // COMMAND_PING_DESCRIPTION: 'Runs a connection test to Discord.',
             COMMAND_PINGPONG: (diff, ping) => `Pong! (Roundtrip took: ${diff}ms. Heartbeat: ${ping}ms.)`,
             COMMAND_INVITE: () => [
                 `To add ${this.client.user.username} to your discord guild:`,
@@ -296,7 +306,7 @@ module.exports = class extends Language {
                 ].join(' ')),
                 'Please file an issue at <https://github.com/dirigeants/klasa> if you find any bugs.'
             ],
-            COMMAND_INVITE_DESCRIPTION: 'Displays the invite link of the bot, to invite it to your guild.',
+            // COMMAND_INVITE_DESCRIPTION: 'Displays the invite link of the bot, to invite it to your guild.',
             COMMAND_INFO: [
                 "Klasa is a 'plug-and-play' framework built on top of the Discord.js library.",
                 'Most of the code is modularized, which allows developers to edit Klasa to suit their needs.',
@@ -317,7 +327,7 @@ module.exports = class extends Language {
                 "If you're interested in us, check us out at https://klasa.js.org"
             ],
             COMMAND_INFO_DESCRIPTION: 'Provides some information about this bot.',
-            COMMAND_HELP_DESCRIPTION: 'Display help for a command.',
+            // COMMAND_HELP_DESCRIPTION: 'Display help for a command.',
             COMMAND_HELP_NO_EXTENDED: 'No extended help available.',
             COMMAND_HELP_DM: '📥 | The list of commands you have access to has been sent to your DMs.',
             COMMAND_HELP_NODM: '❌ | You have DMs disabled, I couldn\'t send you the commands in DMs.',
@@ -335,7 +345,7 @@ module.exports = class extends Language {
             COMMAND_CONF_KEY_NOT_ARRAY: 'This key is not array type. Use the action \'reset\' instead.',
             COMMAND_CONF_GET_NOEXT: (key) => `The key **${key}** does not seem to exist.`,
             COMMAND_CONF_GET: (key, value) => `The value for the key **${key}** is: \`${value}\``,
-            COMMAND_CONF_RESET: (key, response) => `The key **${key}** has been reset to: \`${response}\``,
+            // COMMAND_CONF_RESET: (key, response) => `The key **${key}** has been reset to: \`${response}\``,
             COMMAND_CONF_NOCHANGE: (key) => `The value for **${key}** was already that value.`,
             COMMAND_CONF_SERVER_DESCRIPTION: 'Define per-guild settings.',
             COMMAND_CONF_SERVER: (key, list) => `**Guild Settings${key}**\n${list}`,

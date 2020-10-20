@@ -1,5 +1,5 @@
 const { Monitor, Stopwatch } = require('klasa');
-const { MessageEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class extends Monitor {
 
@@ -17,8 +17,8 @@ module.exports = class extends Monitor {
 				.setTitle(message.language.get('COMMAND_PREFIX_IS', [message.guildSettings.prefix.length ? message.guildSettings.prefix : undefined]))
 				.setColor(message.member.displayHexColor || "000000")
 				.setFooter(`${message.language.get('COMMAND_PREFIX_NAME')}  | Developed By MILLION#1321`)
-				.setTimestamp()
-			return message.sendMessage(prefixEmbed)
+				.setTimestamp();
+			return message.sendMessage(prefixEmbed);
 		}
 		if (!message.commandText) return undefined;
 		if (!message.command) return this.client.emit('commandUnknown', message, message.commandText, message.prefix, message.prefixLength);

@@ -1,5 +1,5 @@
 const { Inhibitor } = require('klasa');
-const { MessageEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class extends Inhibitor {
 
@@ -10,8 +10,8 @@ module.exports = class extends Inhibitor {
 				.setTitle(message.language.get(`INHIBITOR_RUNIN_NONE`, command.name))
 				.setColor("#ff0000")
 				.setFooter(`${message.language.get('INHIBITOR_RUNIN')}  | Developed By MILLION#1321`)
-				.setTimestamp()
-			return message.sendMessage(runInEmbed)
+				.setTimestamp();
+			return message.sendMessage(runInEmbed);
 		}
 		if (!command.runIn.includes(message.channel.type)) {
 			let runInEmbed = new MessageEmbed()
@@ -19,8 +19,8 @@ module.exports = class extends Inhibitor {
 				.setTitle(message.language.get('INHIBITOR_RUNIN_CHANNELS', command.runIn.join(', ')))
 				.setColor("#ff0000")
 				.setFooter(`${message.language.get('INHIBITOR_RUNIN')}  | Developed By MILLION#1321`)
-				.setTimestamp()
-			return message.sendMessage(runInEmbed)
+				.setTimestamp();
+			return message.sendMessage(runInEmbed);
 		}
 	}
 

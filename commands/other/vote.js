@@ -20,12 +20,12 @@ module.exports = class extends Command {
     async run(message) {
         let inviteEmbed = new MessageEmbed()
             .setAuthor(this.client.user.tag, this.client.user.avatarURL())
-            .setDescription(`[Vote for me here!](https://terano.dev/terano)`)
+            .setDescription(`[Vote for me here!](https://top.gg/bot/647256366280474626)`)
             .setColor('#000000')
-            .setFooter(`${message.language.get('COMMAND_VOTE_NAME')} | Developed By MILLION#1321`)
+            .setFooter(`${message.language.get('COMMAND_VOTE_NAME')} | Developed By MILLION#1321`);
         message.sendMessage(inviteEmbed).catch(e => {
-            message.sendMessage(e)
-        })
+            message.sendMessage(e);
+        });
     }
 
 };

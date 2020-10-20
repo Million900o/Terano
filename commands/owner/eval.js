@@ -1,7 +1,7 @@
 const { Command, Stopwatch } = require('klasa');
 const { MessageEmbed } = require('discord.js');
 
-const haste = require('hastebin-gen')
+const haste = require('hastebin-gen');
 
 module.exports = class extends Command {
 
@@ -11,20 +11,30 @@ module.exports = class extends Command {
 			runIn: ['text', 'dm'],
 			deletable: true,
 			aliases: ['ev'],
-			permissionLevel: 5,
+			permissionLevel: 9,
 			extendedHelp: 'No extended help available.',
 			// usage: '<code>'
 		});
 	}
 
 	async run(message) {
-		let msg = message
+		if (!message.author.settings.owner.active) {
+			let noPermsEmbed = new MessageEmbed()
+				.setAuthor(message.author.tag, message.author.avatarURL())
+				.setTitle(message.language.get('NO_BOT_PERMS'))
+				.setColor('#ff0000')
+				.setFooter(`${message.language.get('COMMAND_REBOOT_NAME')} | Developed By MILLION#1321`)
+				.setTimestamp();
+			return message.sendMessage(noPermsEmbed);
+		}
 
-		let code = msg.args.join(' ')
-		let tokenCount = message.args.join(' ').split('token').length - 1
+		let msg = message;
+
+		let code = msg.args.join(' ');
+		let tokenCount = message.args.join(' ').split('token').length - 1;
 		for (let i = 0; i < tokenCount; i++) {
-			code = code.replace(".token", ".ws.ping.toString()")
-			code = code.replace("[\"rtoken\"]", "[\"ws\"]ping.toString()")
+			code = code.replace(".token", ".ws.ping.toString()");
+			code = code.replace("[\"rtoken\"]", "[\"ws\"]ping.toString()");
 		}
 
 		if (!code) {
@@ -33,16 +43,18 @@ module.exports = class extends Command {
 				.setTitle(message.language.get('COMMAND_EVAL_NO_ARGS'))
 				.setColor(message.member.displayHexColor)
 				.setFooter(`${message.language.get('COMMAND_EVAL_NAME')} | Developed By MILLION#1321`)
-				.setTimestamp()
-			return message.sendMessage(noArgsEmbed)
+				.setTimestamp();
+			return message.sendMessage(noArgsEmbed);
 		}
 
 		try {
-			let timer = new Stopwatch()
+			let timer = new Stopwatch();
 
-			timer.start()
-			let evaled = clean(eval(code))
-			let evaledTime = timer.stop()
+			timer.start();
+			let evaled = eval(code);
+			if (evaled instanceof Promise) evaled = await evaled;
+			evaled = clean(evaled);
+			let evaledTime = timer.stop();
 
 			if (typeof evaled !== "string")
 				evaled = require("util").inspect(evaled);
@@ -57,12 +69,12 @@ module.exports = class extends Command {
 			if (evaled.includes(this.client.token.split('.')[2]))
 				evaled = evaled.replace(this.client.token.split('.')[2], '');
 
-			let cEvaled = clean(evaled)
+			let cEvaled = clean(evaled);
 
-			let endShit
+			let endShit;
 			if (cEvaled.length > 2039) {
-				endShit = cEvaled.toChunks(2039)[0]
-			} else endShit = cEvaled
+				endShit = cEvaled.toChunks(2039)[0];
+			} else endShit = cEvaled;
 
 			let embed = new MessageEmbed()
 				.setAuthor(this.client.user.tag, this.client.user.avatarURL())
@@ -78,8 +90,8 @@ module.exports = class extends Command {
 					.setDescription(`\`\`\`js\n${e}\`\`\``)
 					.setColor("#ff0000")
 					.setFooter(evaledTime);
-				message.sendMessage(evalEmbed).catch(e => {
-					console.log(e)
+				message.sendMessage(evalEmbed).catch(err => {
+					console.log(err);
 				});
 			});
 		} catch (e) {
@@ -89,8 +101,8 @@ module.exports = class extends Command {
 				.setDescription(`\`\`\`js\n${e}\`\`\``)
 				.setColor("#ff0000")
 				.setFooter(message.language.get('COMMAND_EVAL_TIME', '0'));
-			message.sendMessage(evalEmbed).catch(e => {
-				console.log(e)
+			message.sendMessage(evalEmbed).catch(err => {
+				console.log(err);
 			});
 		}
 	}

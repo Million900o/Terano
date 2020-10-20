@@ -1,8 +1,8 @@
 const { Command } = require('klasa');
 const { MessageEmbed, Collection } = require('discord.js');
-const ytsr = require('ytsr')
-const ytdl = require('ytdl-core')
-const colors = require('colors')
+const ytsr = require('ytsr');
+const ytdl = require('ytdl-core');
+const colors = require('colors');
 
 module.exports = class extends Command {
 
@@ -20,35 +20,85 @@ module.exports = class extends Command {
     }
 
     async run(message) {
-        let song = await ytsr(message.args.join(' '))
-        if (!song || !song.items || !song.items[0])
-            return //add embed here
+        let memberVoiceChannel = message.member.voice.channel;
+        if (!memberVoiceChannel) {
+            let noSongEmbed = new MessageEmbed()
+                .setAuthor(message.author.tag, message.author.avatarURL())
+                .setTitle(message.language.get('MUSIC_NOT_INVC'))
+                .setColor("ff0000")
+                .setFooter(`${message.language.get('COMMAND_PLAY_NAME')}  | Developed By MILLION#1321`)
+                .setTimestamp();
+            return message.channel.send(noSongEmbed);
+        }
 
-        let channel = await message.member.voice.channel.join()
-        channel.on('ready', () => { console.log(`${new Date().toLocaleString()}`) })
-        channel.on('error', (err) => { channel.disconnect(); throw new Error('FUCK') })
+        if (message.guild.me.voice.channel && message.guild.me.voice.channel !== memberVoiceChannel) {
+            let noSongEmbed = new MessageEmbed()
+                .setAuthor(message.author.tag, message.author.avatarURL())
+                .setTitle(message.language.get('MUSIC_NOT_IN_SAMEVC'))
+                .setColor("ff0000")
+                .setFooter(`${message.language.get('COMMAND_PLAY_NAME')}  | Developed By MILLION#1321`)
+                .setTimestamp();
+            return message.channel.send(noSongEmbed);
+        }
 
+        if (message.args.join(' ').startsWith('https://') || message.args.join(' ').startsWith('http://')) {
+            let connection;
+            if (message.guild.me.voice.channel && this.client.MusicObj.get(message.guild.id)) {
+                connection = this.client.MusicObj.get(message.guild.id);
+            } else {
+                connection = await memberVoiceChannel.join();
+                this.client.MusicObj.set(message.guild.id, connection);
+                connection.on('disconnect', () => {
+                    this.client.MusicObj.delete(message.guild.id);
+                }); //should work idk
+            }
 
+            connection.play(message.args[0]);
 
+            let playingEmbed = new MessageEmbed()
+                .setAuthor(message.author.tag, message.author.avatarURL())
+                .setTitle(message.language.get('COMMAND_PLAY_PLAYING', message.args.join(' ')))
+                .setColor("#32a852")
+                .setFooter(`${message.language.get('COMMAND_PLAY_NAME')}  | Developed By MILLION#1321`)
+                .setTimestamp();
+            return message.channel.send(playingEmbed);
+        } else {
+            let song = await ytsr(message.args.join(' '));
+            if (!song || !song.items || !song.items[0]) {
+                let noSongEmbed = new MessageEmbed()
+                    .setAuthor(message.author.tag, message.author.avatarURL())
+                    .setTitle(message.language.get('COMMAND_PLAY_NOSONG'))
+                    .setColor("ff0000")
+                    .setFooter(`${message.language.get('COMMAND_PLAY_NAME')}  | Developed By MILLION#1321`)
+                    .setTimestamp();
+                return message.channel.send(noSongEmbed);
+            }
 
+            let connection;
+            if (message.guild.me.voice.channel && this.client.MusicObj.get(message.guild.id)) {
+                connection = this.client.MusicObj.get(message.guild.id);
+            } else {
+                connection = await memberVoiceChannel.join();
+                this.client.MusicObj.set(message.guild.id, connection);
+                connection.on('disconnect', () => {
+                    this.client.MusicObj.delete(message.guild.id);
+                }); //should work idk
+            }
 
-        ytsr(message.args.join(' '), async (err, res) => { //replace this with search function\
-            if (err) message.channel.send(err);
-            if (!res) return;
-            if (!res.items[0]) return;
-            let video = res.items[0].link;
-            channel.play(ytdl(video, { highWaterMark: 1 >> 6969, quality: 'highestaudio' })).on("finish", () => {
-                channel.disconnect()
-            }).on("error", async (err) => {
-                channel.disconnect()
-            }).on('finish', async () => {
-                channel.disconnect()
-            })
-        });
+            connection.play(ytdl(song.items[0].link, { filter: 'audioonly' }));
+
+            let playingEmbed = new MessageEmbed()
+                .setAuthor(message.author.tag, message.author.avatarURL())
+                .setTitle(message.language.get('COMMAND_PLAY_PLAYING', song.items[0].title))
+                .setColor("#32a852")
+                .setFooter(`${message.language.get('COMMAND_PLAY_NAME')}  | Developed By MILLION#1321`)
+                .setTimestamp();
+            return message.channel.send(playingEmbed);
+        }
     }
 
     async init() {
-        this.client.MusicObj = new Collection()
+        this.client.MusicObj = new Collection();
     }
 
 };

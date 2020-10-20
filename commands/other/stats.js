@@ -1,5 +1,5 @@
-const { MessageEmbed } = require('discord.js')
-const OS = require('os')
+const { MessageEmbed } = require('discord.js');
+const OS = require('os');
 const { Command } = require('klasa');
 
 module.exports = class extends Command {
@@ -58,7 +58,7 @@ module.exports = class extends Command {
             )
             .addField(
                 `OS Stats`,
-                `\`\`\`coffeescript\nRAM: ${ram}MB,\nRAM Free: ${ramFree}MB,\nOS: ${os},\nCPU: ${cpuType},\nCPU Speed: ${cpuSpeed},\nCPU Usage: ${cpu}%\`\`\``
+                `\`\`\`coffeescript\nRAM: ${ram}MB,\nRAM Free: ${ramFree}MB,\nOS: ${os},\nCPU: ${cpuType},\nCPU Speed: ${cpuSpeed}GHz,\nCPU Usage: ${cpu}%\`\`\``
             )
             .addField(
                 `Client Stats`,

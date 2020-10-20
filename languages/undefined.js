@@ -157,9 +157,9 @@ module.exports = class extends Language {
             // COMMAND_CONF_RESET: (key, response) => `The key **${key}** has been reset to: \`${response}\``,
             PREFIX_REMINDER: (prefix = `@${this.client.user.tag}`) => {
                 if (Array.isArray(prefix)) return new MessageEmbed()
-                    .setTitle(`This guild's prefixes are: \`${prefix.join('\`, \`')}\``)
+                    .setTitle(`This guild's prefixes are: \`${prefix.join('\`, \`')}\``);
                 else return new MessageEmbed()
-                    .setTitle(`This guild's prefix is: \`${prefix}\``)
+                    .setTitle(`This guild's prefix is: \`${prefix}\``);
             },
             // SETTING_GATEWAY_EXPECTS_GUILD: 'The parameter <Guild> expects either a Guild or a Guild Object.',
             // SETTING_GATEWAY_VALUE_FOR_KEY_NOEXT: (data, key) => `The value ${data} for the key ${key} does not exist.`,

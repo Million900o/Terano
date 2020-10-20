@@ -10,17 +10,16 @@ module.exports = class extends Event {
     }
 
     async run() {
-        let readyWebHook = new WebhookClient(config.webhooks.ready.id, config.webhooks.ready.token)
-        let readyEmbed = new MessageEmbed()
-            .setTitle('Ready!')
-            .setFooter('Developed By MILLION#1321')
-            .setTimestamp()
+        // let readyWebHook = new WebhookClient(config.webhooks.ready.id, config.webhooks.ready.token);
+        // let readyEmbed = new MessageEmbed()
+        //     .setTitle('Ready!')
+        //     .setFooter('Developed By MILLION#1321')
+        //     .setTimestamp();
 
-        await DBL.Start(this.client, config.api.dbl, { port: 8008, auth: '0' })
+        // await DBL.Start(this.client, config.api.dbl, { port: 8008, auth: '0' });
 
-        return readyWebHook.send(readyEmbed).catch(e => {
-            throw new Error(e);
-        })
-
+        // return readyWebHook.send(readyEmbed).catch(e => {
+        //     throw new Error(e);
+        // });
     }
 };

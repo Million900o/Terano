@@ -1,5 +1,5 @@
 const { Inhibitor } = require('klasa');
-const { MessageEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class extends Inhibitor {
 
@@ -24,9 +24,9 @@ module.exports = class extends Inhibitor {
 				.setTitle(message.language.get(`INHIBITOR_COOLDOWN_ACTIVE`, Math.ceil(existing.remainingTime / 1000), command.cooldownLevel !== 'author'))
 				.setColor("#ff0000")
 				.setFooter(`${message.language.get('INHIBITOR_COOLDOWN')}  | Developed By MILLION#1321`)
-				.setTimestamp()
-			return message.sendMessage(cooldownEmbed)
-		} else return
+				.setTimestamp();
+			return message.sendMessage(cooldownEmbed);
+		} else return;
 	}
 
 };

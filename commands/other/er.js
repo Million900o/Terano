@@ -18,8 +18,8 @@ module.exports = class extends Command {
 
     async run(message) {
         message.sendMessage("Aww man!").catch(e => {
-            throw e
-        })
+            throw e;
+        });
     }
 
 };

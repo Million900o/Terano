@@ -1,5 +1,5 @@
 const { Inhibitor } = require('klasa');
-const { MessageEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class extends Inhibitor {
 
@@ -15,8 +15,8 @@ module.exports = class extends Inhibitor {
 			.setTitle(message.language.get(`INHIBITOR_PERMISSIONS_ACTIVE`))
 			.setColor("#ff0000")
 			.setFooter(`${message.language.get('INHIBITOR_PERMISSIONS')}  | Developed By MILLION#1321`)
-			.setTimestamp()
-		return message.sendMessage(embed)
+			.setTimestamp();
+		return message.sendMessage(embed);
 	}
 
 };

@@ -26,8 +26,8 @@ module.exports = class extends Inhibitor {
 				.setTitle(message.language.get(`INHIBITOR_MISSING_BOT_PERMS_PERMS`, missing.map(key => this.friendlyPerms[key]).join(', ')))
 				.setColor("#ff0000")
 				.setFooter(`${message.language.get('INHIBITOR_MISSING_BOT_PERMS')}  | Developed By MILLION#1321`)
-				.setTimestamp()
-			return message.sendMessage(noPermsEmbed)
+				.setTimestamp();
+			return message.sendMessage(noPermsEmbed);
 		}
 	}
 

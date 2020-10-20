@@ -2,7 +2,7 @@
  * From Klasa Default Commands (and edited)
  */
 const { Command, Store, Stopwatch } = require('klasa');
-const { MessageEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class extends Command {
 
@@ -15,7 +15,6 @@ module.exports = class extends Command {
 			bucket: 1,
 			cooldown: 0,
 			deletable: true,
-			aliases: [],
 			permissionLevel: 9,
 			extendedHelp: 'No extended help available.',
 		});
@@ -37,8 +36,8 @@ module.exports = class extends Command {
 				.setTitle(message.language.get('COMMAND_RELOAD_ALL', [piece, timer.stop()]))
 				.setColor(message.member.displayHexColor)
 				.setFooter(`${message.language.get('COMMAND_RELOAD_NAME')} | Developed By MILLION#1321`)
-				.setTimestamp()
-			return message.sendMessage(reloadAllEmbed)
+				.setTimestamp();
+			return message.sendMessage(reloadAllEmbed);
 		}
 
 		try {
@@ -54,8 +53,8 @@ module.exports = class extends Command {
 				.setTitle(message.language.get('COMMAND_RELOAD', item.type, item.name, timer.stop()))
 				.setColor(message.member.displayHexColor)
 				.setFooter(`${message.language.get('COMMAND_RELOAD_NAME')} | Developed By MILLION#1321`)
-				.setTimestamp()
-			return message.sendMessage(reloadTypeEmbed)
+				.setTimestamp();
+			return message.sendMessage(reloadTypeEmbed);
 		} catch (err) {
 			piece.store.set(piece);
 			let reloadErrorEmbed = new MessageEmbed()
@@ -63,8 +62,8 @@ module.exports = class extends Command {
 				.setTitle(message.language.get('COMMAND_RELOAD_FAILED', [piece.type, piece.name]))
 				.setColor('#ff0000')
 				.setFooter(`${message.language.get('COMMAND_RELOAD_NAME')} | Developed By MILLION#1321`)
-				.setTimestamp()
-			return message.sendMessage(reloadErrorEmbed)
+				.setTimestamp();
+			return message.sendMessage(reloadErrorEmbed);
 		}
 	}
 
@@ -87,8 +86,8 @@ module.exports = class extends Command {
 			.setTitle(message.language.get('COMMAND_RELOAD_EVERYTHING', [timer.stop()]))
 			.setColor(message.member.displayHexColor)
 			.setFooter(`${message.language.get('COMMAND_RELOAD_NAME')} | Developed By MILLION#1321`)
-			.setTimestamp()
-		return message.sendMessage(reloadCommandEmbed)
+			.setTimestamp();
+		return message.sendMessage(reloadCommandEmbed);
 	}
 
 };

@@ -1,4 +1,4 @@
-const config = require('../../config.json')
+const config = require('../../config.json');
 
 const fetch = require('node-fetch');
 const { MessageEmbed } = require('discord.js');
@@ -25,8 +25,8 @@ module.exports = class extends Command {
                 .setTitle(message.language.get('UNKNOWN_ERROR'))
                 .setColor('#ff0000')
                 .setFooter(`${message.language.get('COMMAND_APOD_NAME')} | Developed By MILLION#1321`)
-                .setTimestamp()
-            return message.sendMessage(noPermsEmbed)
+                .setTimestamp();
+            return message.sendMessage(noPermsEmbed);
         }
 
         const embed = new MessageEmbed()

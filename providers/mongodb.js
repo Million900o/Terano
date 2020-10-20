@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2019 dirigeants. All rights reserved. MIT license.
+// Copyright (c) 2017-2019 dirigeants. All rights reserved. MIT license
 const { Provider, util: { mergeDefault, mergeObjects, isObject } } = require('klasa');
 const { MongoClient: Mongo } = require('mongodb');
 
@@ -13,7 +13,7 @@ module.exports = class extends Provider {
         const connection = mergeDefault({
             host: 'localhost',
             port: 27017,
-            db: 'klasa',//hi
+            db: 'klasa2',//hi
             options: {}
         }, this.client.options.providers.mongodb);
 

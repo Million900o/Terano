@@ -1,5 +1,5 @@
 const { Inhibitor } = require('klasa');
-const { MessageEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class extends Inhibitor {
 
@@ -10,9 +10,9 @@ module.exports = class extends Inhibitor {
 				.setTitle(message.language.get(`INHIBITOR_NSFW_CHANNEL`))
 				.setColor("#ff0000")
 				.setFooter(`${message.language.get('INHIBITOR_NSFW')}  | Developed By MILLION#1321`)
-				.setTimestamp()
-			return message.sendMessage(NSFWEmbed)
-		} else return
+				.setTimestamp();
+			return message.sendMessage(NSFWEmbed);
+		} else return;
 	}
 
 };

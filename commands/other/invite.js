@@ -21,10 +21,10 @@ module.exports = class extends Command {
             .setAuthor(this.client.user.tag, this.client.user.avatarURL())
             .setDescription(`[${message.language.get('COMMAND_INVITE_TXT')}](https://terano.dev/teranoinv)`)
             .setColor('#000000')
-            .setFooter(`${message.language.get('COMMAND_INVITE_NAME')} | Developed By MILLION#1321`)
+            .setFooter(`${message.language.get('COMMAND_INVITE_NAME')} | Developed By MILLION#1321`);
         message.sendMessage(inviteEmbed).catch(e => {
-            message.sendMessage(e)
-        })
+            message.sendMessage(e);
+        });
     }
 
 };

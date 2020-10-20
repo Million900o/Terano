@@ -18,27 +18,27 @@ module.exports = class extends Command {
     }
 
     async run(message) {
-        let newPrefix = message.args.join(' ')
+        let newPrefix = message.args.join(' ');
         if (!newPrefix) {
-            let prefixUpdatedEmbed = new MessageEmbed()
+            let prefixNotUpdatedEmbed = new MessageEmbed()
                 .setAuthor(message.author.tag, message.author.avatarURL())
                 .setTitle(message.language.get('COMMAND_PREFIX_NO_ARGS'))
                 .setColor(message.member.displayHexColor)
                 .setFooter(`${message.language.get('COMMAND_PREFIX_NAME')}  | Developed By MILLION#1321`)
-                .setTimestamp()
-            return message.sendMessage(prefixUpdatedEmbed)
+                .setTimestamp();
+            return message.sendMessage(prefixNotUpdatedEmbed);
         }
 
         let { errors } = await message.guild.settings.update({ prefix: newPrefix }, message.guild);
-        if (errors.length) throw new String(errors[0])
+        if (errors.length) throw errors[0];
 
         let prefixUpdatedEmbed = new MessageEmbed()
             .setAuthor(message.author.tag, message.author.avatarURL())
             .setTitle(message.language.get('COMMAND_PREFIX_UPDATED', newPrefix))
             .setColor(message.member.displayHexColor)
             .setFooter(`${message.language.get('COMMAND_PREFIX_NAME')}  | Developed By MILLION#1321`)
-            .setTimestamp()
-        return message.sendMessage(prefixUpdatedEmbed)
+            .setTimestamp();
+        return message.sendMessage(prefixUpdatedEmbed);
     }
 
 };
