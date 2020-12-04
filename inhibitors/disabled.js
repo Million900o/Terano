@@ -1,5 +1,5 @@
 const { Inhibitor } = require('klasa');
-const { MessageMessageEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class extends Inhibitor {
 
