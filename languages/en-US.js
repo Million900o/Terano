@@ -61,7 +61,7 @@ module.exports = class extends Language {
 
             COMMAND_EVAL_NAME: 'Eval',
             COMMAND_EVAL_DESCRIPTION: 'Make the bot run js code.',
-            COMMAND_EVAL_NO_ARGS: 'Imprpoer command usage, please include code to evaluate.',
+            COMMAND_EVAL_NO_ARGS: 'Improper command usage, please include code to evaluate.',
             COMMAND_EVAL_SUCC: 'Eval Successful',
             COMMAND_EVAL_ERR: 'Eval Unsuccessful',
             COMMAND_EVAL_TIME: (time) => `Evaluated in ${time}μs`,
