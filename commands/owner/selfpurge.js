@@ -17,10 +17,11 @@ module.exports = class extends Command {
 
     async run(message) {
         let messages = await message.channel.messages.fetch()
-        for (let msg of messages.filter(m => m.author.id == this.client.user.id).last(5)) await msg.delete();
+        messages = messages.filter(m => m.author.id == this.client.user.id).last(5)
+        for (let msg of messages) await msg.delete()
         let purgeEmbed = new MessageEmbed()
             .setAuthor(message.author.tag, message.author.avatarURL())
-            .setTitle(message.language.get('COMMAND_SELFPURGE', Messages.size))
+            .setTitle(message.language.get('COMMAND_SELFPURGE', messages.length))
             .setColor(message.member.displayHexColor)
             .setFooter(`${message.language.get('COMMAND_SELFPURGE_NAME')} | Developed By MILLION#1321`)
             .setTimestamp()
