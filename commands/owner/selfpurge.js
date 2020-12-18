@@ -16,9 +16,8 @@ module.exports = class extends Command {
     }
 
     async run(message) {
-        let Messages = await message.channel.messages.fetch()
-        Messages = Messages.filter(m => m.author.id == this.client.user.id)
-        await message.channel.bulkDelete(Messages)
+        let messages = await message.channel.messages.fetch()
+        for (let msg of messages.filter(m => m.author.id == this.client.user.id).last(5)) await msg.delete();
         let purgeEmbed = new MessageEmbed()
             .setAuthor(message.author.tag, message.author.avatarURL())
             .setTitle(message.language.get('COMMAND_SELFPURGE', Messages.size))
